@@ -1,6 +1,15 @@
 web2py-new-app
 ==============
 
+This a simple (e.g. empty) web2py application as it comes from the wizard
+of the admin web application augmented with some useful features such as:
+
+* A predefined logger
+* A UnitTest example
+* A uniformed and coded way for submodules installation
+* A uniformed and coded way for distinguish DB configuration between different installations
+
+
 Installation steps
 ============================
 
@@ -113,3 +122,12 @@ TODO
 [web2py dsn specificaton]: http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer#Connection-strings
 [PostgreSQL doc]: http://www.postgresql.org/docs/9.3/static/
 [how to]: http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
+
+
+Credits
+=======
+
+Maintainer
+-----------
+
+* Manuele PESENTI <manuele@inventati.org>
