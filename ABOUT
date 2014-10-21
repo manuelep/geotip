@@ -1,2 +1,13 @@
-Write something about this app.
-Developed with web2py.
+web2py-new-app
+==============
+
+This a simple (e.g. empty) web2py application as it comes from the wizard
+of the admin web application augmented with some useful features.
+
+Credits
+=======
+
+Maintainer
+-----------
+
+* Manuele PESENTI <manuele@inventati.org>
