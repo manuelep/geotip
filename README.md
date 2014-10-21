@@ -7,7 +7,7 @@ Installation steps
 ## 1. Clone the repository
 
 ```sh
-$ git clone <url> teleservice
+$ git clone <url> <app>
 ```
 
 ## 2. Init the required submodules (**if needed**)
@@ -15,7 +15,7 @@ $ git clone <url> teleservice
 ### 2.1. Pull and checkout into the branch containing all submodules
 
 ```sh
-$ cd teleservice/
+$ cd <app>/
 $ git fetch origin submodules
 $ git checkout submodules
 ```
@@ -44,7 +44,7 @@ is automatically created.
 ### 3.2. Rename and modify the configuration file
 
 ```sh
-$ cp models/confdb.example models/confdb.py
+$ cp models/confdb.py.example models/confdb.py
 $ vim models/confdb.py
 ```
 
@@ -55,6 +55,11 @@ to the [web2py dsn specificaton][]
 installation the dedicated database is **not** empty and the tables
 described in the model are already defined in the DB engine.
 
+## How to run tests
+
+```sh
+$ ./web2py.py -S web2py_new_app -M -R applications/web2py_new_app/tests/*.py
+```
 
 [web2py dsn specificaton]: http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer#Connection-strings
 [PostgreSQL doc]: http://www.postgresql.org/docs/9.3/static/
