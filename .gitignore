@@ -52,3 +52,15 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Web2py
+cache
+databases
+errors
+sessions
+uploads
+*.bak
+
+# If you want to save versions of the configuration file (better in a
+# separete, and maybe local, branch) just comment out next line
+models/confdb.py
