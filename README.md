@@ -89,11 +89,26 @@ $ git commit -m "Introduced confdb in local branch"
 From now on you have to use your local branch and merge the master branch
 to it in order to let your app to be kept up to date.
 
+Development knowledge and suggestions
+============================
+
 ## How to run tests
 
 ```sh
 $ ./web2py.py -S web2py_new_app -M -R applications/web2py_new_app/tests/*.py
 ```
+
+## How to log
+
+TODO
+
+## Let git to ignore your submodules path
+
+TODO
+
+## Usage of the global variale "DEVELOPMENT"
+
+TODO
 
 [web2py dsn specificaton]: http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer#Connection-strings
 [PostgreSQL doc]: http://www.postgresql.org/docs/9.3/static/
