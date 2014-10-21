@@ -55,6 +55,40 @@ to the [web2py dsn specificaton][]
 installation the dedicated database is **not** empty and the tables
 described in the model are already defined in the DB engine.
 
+## 4. Create a local branch for configuration versioning (*optional*)
+
+### 4.1. Create your local branch
+
+```sh
+$ git checkout -b local
+```
+
+### 4.2. Let your branch recognize your configuration file
+
+For this purpose you have to comment out the line in your .gitignore
+that exclude your configuration file from versioning.
+Change the line
+
+```
+models/confdb.py
+```
+
+to 
+
+```
+# models/confdb.py
+```
+
+### 4.3. Add the configuration file to your branch
+
+```sh
+$ git add .gitignore models/confdb.py
+$ git commit -m "Introduced confdb in local branch"
+```
+
+From now on you have to use your local branch and merge the master branch
+to it in order to let your app to be kept up to date.
+
 ## How to run tests
 
 ```sh
