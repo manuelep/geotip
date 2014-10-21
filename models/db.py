@@ -1,5 +1,40 @@
 # -*- coding: utf-8 -*-
 
+import os, logging, logging.handlers
+
+def get_configured_logger(name):
+    """ Courtesy of: http://www.web2pyslices.com/slice/show/1416/logging
+    """
+    logger = logging.getLogger(name)
+    if (len(logger.handlers) == 0):
+        # This logger has no handlers, so we can assume it hasn't yet been configured
+        # (Configure logger)
+        # Create RotatingFileHandler
+        # Alternatively we can think to use other handler such as:
+        # SQLiteHandler (https://github.com/amka/SQLiteHandler/blob/master/sqlite_handler.py)
+        formatter="%(asctime)s %(levelname)s %(process)s %(thread)s %(funcName)s():%(lineno)d %(message)s"
+        handler = logging.handlers.RotatingFileHandler(
+            os.path.join(request.folder, 'private', request.application+'.log'),
+            maxBytes = 1024,
+            backupCount = 2
+        )
+        handler.setFormatter(logging.Formatter(formatter))
+        logging_level = logging.DEBUG if DEVELOPMENT else logging.WARNING
+        handler.setLevel(logging_level)
+        logger.addHandler(handler)
+        logger.setLevel(logging_level)
+        
+        # Test entry:
+        logger.debug(name + ' logger created')
+    else:
+        # Test entry:
+        logger.debug(name + ' already exists')
+
+    return logger
+
+# Assign application logger to a global var  
+logger = get_configured_logger(request.application)
+
 #########################################################################
 ## This scaffolding model makes your app work on Google App Engine too
 ## File is released under public domain and you can use without limitations
