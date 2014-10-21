@@ -9,6 +9,28 @@ of the admin web application augmented with some useful features such as:
 * A uniformed and coded way for submodules installation
 * A uniformed and coded way for distinguish DB configuration between different installations
 
+Prerequisites
+============================
+
+## Dependencies:
+
+They depend on the specific developed application. They could be something like:
+
+* python-psycopg2 (>=2.5.2)
+* ...
+
+## Other prerequisites:
+
+They depend on the specific developed application. They could be something like:
+
+* Running and accessible PostgreSQL server (>=9.3)
+  with a dedicated database
+* ...
+
+Deploiment
+============================
+
+[TODO]
 
 Installation steps
 ============================
@@ -118,6 +140,28 @@ TODO
 ## Usage of the global variale "DEVELOPMENT"
 
 TODO
+
+## Change the remote "origin" repository
+
+### 1. Rename the *origin* to *root*
+
+```sh
+$ git remote rename origin root
+```
+
+### 2. Remove the pushing option for the remote *root* repository
+
+This step is usefull for avoiding to push to the wrong repository
+
+```sh
+$ git remote set-url --push root no-pushing
+```
+
+### 3. Add a new project remote *origin* repository
+
+```sh
+$ git remote add origin <url>
+```
 
 [web2py dsn specificaton]: http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer#Connection-strings
 [PostgreSQL doc]: http://www.postgresql.org/docs/9.3/static/
