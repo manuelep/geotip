@@ -133,9 +133,55 @@ $ ./web2py.py -S web2py_new_app -M -R applications/web2py_new_app/tests/*.py
 
 TODO
 
-## Let git to ignore your submodules path
+## Add submodules letting git ignore them
 
-TODO
+### Switch to *submodules* branch
+
+```sh
+$ git checkout submodules
+```
+
+### Add the desidered submodule
+
+```sh
+$ git add submodule <url> <path>
+```
+
+in case of javascript and css dependencies use a path like: ```static/submodules/<mylib>```
+
+### Fix the submodule version
+
+First go to the submodule root
+
+```sh
+$ cd <path>
+```
+
+* in case you want to use tgs
+```sh
+$ git checkout tags/<tagname>
+```
+* in case you want to use commt id
+```sh
+$ git checkout <commit id>
+```
+
+now go back to your project root
+
+```sh
+$ cd -
+```
+than you have to add to your submodules branch:
+* the .gitmodules file (just the first time you add a submodule to your project)
+* the <path> to your submodule
+
+and **go back branch master**
+
+```sh
+$ git add .gitmodules <path>
+$ git commit -m "Just added a submodule!"
+$ git checkout master
+```
 
 ## Usage of the global variale "DEVELOPMENT"
 
