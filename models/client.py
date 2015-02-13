@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from gluon.contrib import simplejson as json
+
 class Libs(object):
     """ Conditional javascript libraries loading
     usage:

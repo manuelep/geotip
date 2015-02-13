@@ -7,7 +7,9 @@ of the admin web application augmented with some useful features such as:
 * A predefined logger
 * A UnitTest example
 * A uniformed and coded way for submodules installation
-* A uniformed and coded way for distinguish DB configuration between different installations
+* A configuration modulefor distinguishing values of variables that could differ
+  from different installation of the same app (i.e. development or production)
+  such as the DB connection string and relatedconfigurations
 
 Prerequisites
 ============================
@@ -72,53 +74,54 @@ Help yourself with the [PostgreSQL doc][] or some easier [how to][].
 For SQLite DB usage this step is not necessary because the DB file
 is automatically created.
 
-### 3.2. Rename and modify the configuration file
+### 3.2. Configure your application
 
-```sh
-$ cp models/confdb.py.example models/confdb.py
-$ vim models/confdb.py
+#### 3.2.1 Production configuration
+
+Adapt to your **production** needs the dictionary **defaults** you can find in
+_modules->config->defaults.py_. This file is under **git** version controll.
+
+```python
+defaults = {
+    # Set DEVELOPMENT to True if this installation is for development
+    # or to false if it's for production. When you'll need to distinguish the two
+	# situations in your code, for example for logging purposes you can refere to
+	# this parameter.
+    "DEVELOPMENT": False, 												   # [1]
+    # Set migrate_anabled and migrate values to False if at the moment of the
+    # installation the dedicated database is not empty and the tables described
+    # in the model are already defined in the DB engine.
+    "migrate": True, 													   # [3]
+    "migrate_enabled": True, 											   # [3]
+    # The connection strings to the databases
+    "db": 'sqlite://storage.sqlite', 									   # [2]
+    # "sdb": 'sqlite://scheduler.sqlite', 								   # [2]
+    # Add here under other variable accordingly to your needs.
+	# Values could be any simple type such as string, integer, float or boolean
+	# or at leas a dictionary with simple values in it.
+}
 ```
 
-* Set the DEVELOPMENT variable value to **False** if in production;
-* Adapt the dsn in dbconf->db->args list to your system configuration according
-to the [web2py dsn specificaton][]
-* Set migrate_anabled and migrate values to **False** if at the moment of the
+1. Set the **DEVELOPMENT** variable value to **True** if in development;
+2. Adapt and add other dsn accordigly to your needs following the [web2py dsn specificaton][]
+3. Set migrate_anabled and migrate values to **False** if at the moment of the
 installation the dedicated database is **not** empty and the tables
 described in the model are already defined in the DB engine.
 
-## 4. Create a local branch for configuration versioning (*optional*)
+#### 3.2.2 Development configuration
 
-### 4.1. Create your local branch
+In development installation you can add a json file called **config.json** under
+the _private_ forlder of your application with a similar structure of the defaults
+dictionary where you can specify all variables that locally has to have a different
+value. This file is **not** under git version controll and all values overwrites
+the default values in the application environment.
 
-```sh
-$ git checkout -b local
+```json
+{
+    "DEVELOPMENT": true, 
+    "db": "postgres:psycopg2://user:password@localhost:5432/dbname"
+}
 ```
-
-### 4.2. Let your branch recognize your configuration file
-
-For this purpose you have to comment out the line in your .gitignore
-that exclude your configuration file from versioning.
-Change the line
-
-```
-models/confdb.py
-```
-
-to 
-
-```
-# models/confdb.py
-```
-
-### 4.3. Add the configuration file to your branch
-
-```sh
-$ git add .gitignore models/confdb.py
-$ git commit -m "Introduced confdb in local branch"
-```
-
-From now on you have to use your local branch and merge the master branch
-to it in order to let your app to be kept up to date.
 
 Development knowledge and suggestions
 ============================
@@ -171,6 +174,7 @@ now go back to your project root
 ```sh
 $ cd -
 ```
+
 than you have to add to your submodules branch:
 * the .gitmodules file (just the first time you add a submodule to your project)
 * the <path> to your submodule
