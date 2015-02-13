@@ -1,5 +1,5 @@
 <!-- Load development tool bar -->
-{{if DEVELOPMENT:}}
+{{if current.config.DEVELOPMENT:}}
     {{=DIV(
         BUTTON("x", _type="button", _class="close", **{"_data-dismiss": "alert"}),
         DIV(

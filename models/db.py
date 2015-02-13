@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import os, logging, logging.handlers
+from gluon import current
+from config.config import Config
+Config.load()
 
 def get_configured_logger(name):
     """ Courtesy of: http://www.web2pyslices.com/slice/show/1416/logging
@@ -19,7 +22,7 @@ def get_configured_logger(name):
             backupCount = 2
         )
         handler.setFormatter(logging.Formatter(formatter))
-        logging_level = logging.DEBUG if DEVELOPMENT else logging.WARNING
+        logging_level = logging.DEBUG if current.config.DEVELOPMENT else logging.WARNING
         handler.setLevel(logging_level)
         logger.addHandler(handler)
         logger.setLevel(logging_level)
@@ -44,12 +47,7 @@ logger = get_configured_logger(request.application)
 ## be redirected to HTTPS, uncomment the line below:
 # request.requires_https()
 
-# WARNING: this section needs *dbconf* variable definition as prerequisite
-dvars = dict(
-    pool_size=1,
-    #check_reserved=['all']
-)
-db = DAL(*dbconf['db']['args'], **dict(dvars, **dbconf['db']['vars']))
+db = DAL(current.config.db, migrate=current.config.migrate, migrate_enabled=current.config.migrate_enabled)
 
 
 ## by default give a view/generic.extension to all actions from localhost
