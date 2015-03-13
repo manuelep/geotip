@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from gluon.custom_import import track_changes; track_changes(True)
+
 import os, logging, logging.handlers
+from datetime import datetime, timedelta
 from gluon import current
+from storage import Storage
 from config.config import Config
 Config.load()
+
+from plugin_geotip.widgets import PointMapWidget
 
 def get_configured_logger(name):
     """ Courtesy of: http://www.web2pyslices.com/slice/show/1416/logging
@@ -47,8 +53,18 @@ logger = get_configured_logger(request.application)
 ## be redirected to HTTPS, uncomment the line below:
 # request.requires_https()
 
-db = DAL(current.config.db, migrate=current.config.migrate, migrate_enabled=current.config.migrate_enabled)
+import urllib2
+if current.config.db=='postgression':
+    if session.postgression is None:
+        res = urllib2.urlopen('http://api.postgression.com/')
+        session.postgression = Storage(dns=res.read(), time=datetime.now())
+    elapsed = datetime.now()-session.postgression.time
+    if elapsed > timedelta(minutes=29):
+        res = urllib2.urlopen('http://api.postgression.com/')
+        session.postgression = Storage(dns=res.read(), time=datetime.now())
+    current.config.db = session.postgression.dns
 
+db = DAL(current.config.db, migrate=current.config.migrate, migrate_enabled=current.config.migrate_enabled)
 
 ## by default give a view/generic.extension to all actions from localhost
 ## none otherwise. a pattern can be 'controller/function.extension'
@@ -113,3 +129,14 @@ use_janrain(auth, filename='private/janrain.key')
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
+from plugin_geotip.widgets import  GeoJsonCollector
+    
+
+db.define_table('points',
+    Field('name'),
+    Field('the_geom', 'json'),
+    format = '%(name)s'
+)
+
+db.points.the_geom.represent = lambda row: GeoJsonCollector.extract_feature(row, 'the_geom', db.points._format)

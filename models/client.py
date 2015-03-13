@@ -24,3 +24,19 @@ class Libs(object):
                 response.files.append(url)
         else:
             response.files.append(url)
+
+
+#                                    ### Load libraries for the ol3 solution ###
+
+#                                                          #### Openlayers3 ####
+Libs.append(URL('static', 'submodules/ol-v3.3.0/css/ol.css'))
+Libs.append(URL('static', 'submodules/ol-v3.3.0/build/ol.js'))
+
+#                                                    #### ol3-layerswitcher ####
+Libs.append(URL('static', 'submodules/ol3-layerswitcher/examples/layerswitcher.css'))
+Libs.append(URL('static', 'submodules/ol3-layerswitcher/src/ol3-layerswitcher.css'))
+Libs.append(URL('static', 'submodules/ol3-layerswitcher/src/ol3-layerswitcher.js'))
+
+#                                      #### my custom solution based on ol3 ####
+Libs.append(URL('static', 'plugin_geotip/overwrites.css'))
+Libs.append(URL('static', 'plugin_geotip/widgets.js'))

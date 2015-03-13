@@ -7,7 +7,7 @@ defaults = {
     # or to false if it's for production. When you'll need to distinguish the two
 	# situations in your code, for example for logging purposes you can refere to
 	# this parameter.
-    "DEVELOPMENT": False,
+    "DEVELOPMENT": True,
     # Set migrate_anabled and migrate values to False if at the moment of the
     # installation the dedicated database is not empty and the tables described
     # in the model are already defined in the DB engine.

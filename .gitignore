@@ -61,7 +61,4 @@ sessions/*
 private/*
 uploads/*
 *.bak
-
-# If you want to save versions of the configuration file (better in a
-# separete, and maybe local, branch) just comment out next line
-models/confdb.py
+static/submodules/*
