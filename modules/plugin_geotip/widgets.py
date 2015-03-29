@@ -247,6 +247,8 @@ class Mapgrid(object):
 
     def _get_features(self, query):
         db = query._db
+        if not db._uri.startswith('postgres'):
+            return {}
         mapbox = {}
         for n,k in enumerate(('x1', 'y1', 'x2', 'y2', )):
             mapbox[k] = current.request.args(n+1, cast=float, default=0)
