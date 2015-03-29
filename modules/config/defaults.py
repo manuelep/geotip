@@ -14,8 +14,9 @@ defaults = {
     "migrate": True,
     "migrate_enabled": True,
     # The connection strings to the databases
-    "db": 'sqlite://storage.sqlite',
-    # "sdb": 'sqlite://scheduler.sqlite',
+    ## Just use it for DEMO
+    "db": 'postgression'
+    # "db": "postgres:psycopg2://<myuser>:<mypassword>@localhost:5432/<mydb>",
     # Add here under other variable accordingly to your needs.
 	# Values could be any simple type such as string, integer, float or boolean
 	# or at leas a dictionary with simple values in it.

@@ -18,13 +18,13 @@ var zoom_change
 
 function SinglePointEditMap (mapid, map_setup, storeid) {
 	/**
-	 * a widget for add/edit just a single point in my geometry field.
-       Features are read and stored in the specified store.
+	 * a widget for adding and editing just a single point in my geometry field.
+       Features are read and stored in the textarea identified by the storeid parameter.
 
        Options parameters:
-	 * mapid 	 @string		  : div id
-	 * map_setup @object		  : {'center-lat': ..., 'center-lng':..., 'zoom':...}
-	 * store 	 @textarea.geojson: textarea containing a geojson string
+	 * mapid 	 @string : div id
+	 * map_setup @object : {'center-lat': ..., 'center-lng':..., 'zoom':...}
+	 * storeid 	 @string : id of the textarea containing a geojson string
 	 */
 
 	var store =  jQuery("#"+storeid);
@@ -144,6 +144,15 @@ function SinglePointEditMap (mapid, map_setup, storeid) {
 };
 
 function SinglePointViewMap (mapid, map_setup, storeid) {
+	/**
+	 * a widget for viewing just a single point in my geometry field.
+     *  Features are read from the specified store.
+	 *
+     * Options parameters:
+	 * mapid 	 @string : div id
+	 * map_setup @object : {'center-lat': ..., 'center-lng':..., 'zoom':...}
+	 * storeid 	 @string : id of the textarea containing a geojson string
+	 */
 
 	var raw_data = window[storeid];
 	var gj = new ol.format.GeoJSON()
@@ -218,7 +227,13 @@ function SinglePointViewMap (mapid, map_setup, storeid) {
 
 function GridMap(mapid, map_setup, storeid) {
 	/**
-	 * TODO
+	 * Map to be placed at the top of the grid showing where selected geometries
+	 * are placed.
+	 * 
+	 *  Options parameters:
+	 * mapid 	 @string : div id
+	 * map_setup @object : {'center-lat': ..., 'center-lng':..., 'zoom':...}
+	 * storeid 	 @string : id of the textarea containing a geojson string
 	 */
 
 	var raw_data = window[storeid];

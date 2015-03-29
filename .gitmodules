@@ -1,0 +1,6 @@
+[submodule "static/submodules/ol-v.3.3.0"]
+	path = static/submodules/ol-v.3.3.0
+	url = https://github.com/manuelep/ol-v.3.3.0-build.git
+[submodule "static/submodules/ol3-layerswitcher"]
+	path = static/submodules/ol3-layerswitcher
+	url = https://github.com/walkermatt/ol3-layerswitcher.git

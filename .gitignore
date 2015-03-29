@@ -61,4 +61,4 @@ sessions/*
 private/*
 uploads/*
 *.bak
-static/submodules/*
+#static/submodules/*
