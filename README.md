@@ -22,7 +22,7 @@ geographical database extensions (such as PostGIS).
 
 ## DEMO
 
-[url](url)
+[GEOTIP](http://manuele.pythonanywhere.com/geotip)
 
 
 Python dependencies:
@@ -78,7 +78,7 @@ GRANT ALL PRIVILEGES ON DATABASE <mydb> to <myuser>;
 ### 4.2. Demo database
 
 For demo porposes you can escape the database setup just explained using the
-postgression service. See how in the next configuiration section.
+[postgression][] service. See how in the next configuiration section.
 
 
 ## 6. Configuration (**Optional**)
@@ -149,3 +149,4 @@ Maintainer
 [how to]: http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
 [web2py plugin]: http://web2py.com/books/default/chapter/29/12/components-and-plugins#Plugins
 [application repo url]: http://notyetspecified
+[postgression]: http://www.postgression.com/

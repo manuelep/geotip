@@ -29,8 +29,8 @@ class Libs(object):
 #                                    ### Load libraries for the ol3 solution ###
 
 #                                                          #### Openlayers3 ####
-Libs.append(URL('static', 'submodules/ol-v3.3.0/css/ol.css'))
-Libs.append(URL('static', 'submodules/ol-v3.3.0/build/ol.js'))
+Libs.append(URL('static', 'submodules/ol3/css/ol.css'))
+Libs.append(URL('static', 'submodules/ol3/build/ol.js'))
 
 #                                                    #### ol3-layerswitcher ####
 Libs.append(URL('static', 'submodules/ol3-layerswitcher/examples/layerswitcher.css'))
